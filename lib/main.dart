@@ -24,6 +24,15 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home")
       ),
+      body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children : [
+              Text("Football is my drug."),
+              Text("CR7 is my dealer.")
+            ]
+          )
+      )
     );
   }
 }
