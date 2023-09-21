@@ -1,110 +1,125 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
+void main ( ) {
+  runApp(myApp()) ;
 }
 
-class MyApp extends StatelessWidget {
+class myApp extends StatelessWidget {
+  const myApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      title: "SmartApp",
+      debugShowCheckedModeBanner: true,
+      home: Homescreen( ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class Homescreen extends StatelessWidget {
+  const Homescreen ({super.key});
+
+  //get floatingActionButton => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Photo Gallery'),
-        backgroundColor: Colors.blue,
+        leading: Icon(Icons.business),
+        backgroundColor: Colors.black,
+        title: Text("Home"),
+        centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.search) ) ,
+          SizedBox(width: 10,) ,
+          IconButton(onPressed: (){}, icon: Icon(Icons.settings)),
+        ],
+        toolbarHeight: 100,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Text('Welcome to Photo Gallery!', style: TextStyle(fontSize: 24)),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Search'),
-              ),
-            ),
-            GridView.count(
-              physics: NeverScrollableScrollPhysics(), // Disable GridView scrolling
-              shrinkWrap: true,
-              crossAxisCount: 3,
-              children: List.generate(6, (index) {
-                return GestureDetector(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Image $index clicked')));
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: Image.network('https://placekitten.com/200/300'),
-                      ),
-                      Text('Caption for Image $index'),
-                    ],
-                  ),
-                );
-              }),
-            ),
-            ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                // New Column widget
-                Column(
-                  children: <Widget>[
-                    ListTile( // Image 1 with title and subtitle
-                        leading: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJFxRCN9WzOuzIiIha8Yhmw2wBhesZuvwaiw&usqp=CAU'),
-                        title: Text('Photo 1'),
-                        subtitle: Text('Description for photo 1')
-                    ),
-                    // Text field
-                    TextField(),
-                  ],
-                ),
-                // Image 2 with title and subtitle
-                Column(
-                  children: <Widget>[
-                    ListTile( // Image 1 with title and subtitle
-                        leading: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJFxRCN9WzOuzIiIha8Yhmw2wBhesZuvwaiw&usqp=CAU/200/300'),
-                        title: Text('Photo 2'),
-                        subtitle: Text('Description for photo 2')
-                    ),
-                    // Text field
-                    TextField(),
-                  ],
-                ),
-                // Image 3 with title and subtitle
-                Column(
-                  children: <Widget>[
-                    ListTile( // Image 1 with title and subtitle
-                        leading: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJFxRCN9WzOuzIiIha8Yhmw2wBhesZuvwaiw&usqp=CAU/200/300'),
-                        title: Text('Photo 3'),
-                        subtitle: Text('Description for photo 3')
-                    ),
-                    // Text field
-                    TextField(),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+
+      body: Column(
+        children: [
+          Expanded(
+            child: gridview(),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: Image.network('https://w0.peakpx.com/wallpaper/941/603/HD-wallpaper-the-king-cr7-football-juventus-player-potugese-ronaldo-soccer-tiger-thumbnail.jpg'),
+                title: Text('Cristiano Roanldo'),
+                subtitle: Text('The King, The Myth, The Legend'),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Photos Uploaded Successfully!')));
         },
-        child: Icon(Icons.cloud_upload),
+        child: Icon(Icons.upload_outlined),
       ),
     );
   }
 }
+
+class gridview extends StatefulWidget {
+  const gridview({super.key});
+
+  @override
+  State<gridview> createState() => _gridViewState();
+}
+
+class _gridViewState extends State<gridview> {
+
+  final List<String> imageurls = [
+    'https://c4.wallpaperflare.com/wallpaper/1019/822/355/cristiano-ronaldo-black-and-white-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/668/353/217/cristiano-ronaldo-5k-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/891/194/510/cristiano-ronaldo-real-madrid-fifa-18-ball-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/747/472/920/football-star-cristiano-ronaldo-celebrity-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/914/646/426/cristiano-madrid-portugal-real-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/275/519/739/cristiano-ronaldo-real-madrid-filter-soccer-wallpaper-thumb.jpg',
+    'https://images8.alphacoders.com/476/476725.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/139/444/1000/cristiano-ronaldo-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/935/871/816/manchester-united-christ-ronolado-wallpaper-preview.jpg'
+  ] ;
+
+  final List<String> imageDescriptions = [
+    "Phto 1",
+    'Photo 2',
+    'Photo 3',
+    'Photo 4',
+    'Photo 5',
+    'Photo 6',
+    'Photo 7',
+    'Photo 8',
+    'Photo 9',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3 ,
+          mainAxisSpacing: 10 ,
+          crossAxisSpacing: 10
+        ),
+        itemCount: imageurls.length,
+        itemBuilder: (context , index) {
+          return Card(
+            child: Column(
+              children: [
+                Image.network(imageurls[index]),
+                Text(imageDescriptions[index]),
+              ],
+            ),
+          );
+        }
+    );
+  }
+}
+
+
