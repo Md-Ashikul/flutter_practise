@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practise/home_screen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text("My first App"),
-        ),
-      ),
-    )
-  );
+  runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
